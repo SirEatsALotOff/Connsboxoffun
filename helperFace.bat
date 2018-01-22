@@ -41,6 +41,9 @@ if "%userInput%"=="infoTitle" (
 if "%userInput%"=="test" goto idle
 if "%userInput%"=="time" echo %time%
 if "%userInput%"=="cls" (
+set timeDisplay=0
+set dateDisplay=0
+set infoDisplay=0
 echo.>userInput.txt
 title Face
 cls
