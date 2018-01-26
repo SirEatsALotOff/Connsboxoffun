@@ -33,11 +33,11 @@ if %strlength%==1 (
 set "hour= %hour%"
 )
 
-::ECHO %minute%> tempfile.txt
-::FOR %%? IN (tempfile.txt) DO ( SET /A strlength=%%~z? - 2 )
-::if %strlength%==1 (
-::set "minute=0%minute%"
-::)
+ECHO %minute%> tempfile.txt
+FOR %%? IN (tempfile.txt) DO ( SET /A strlength=%%~z? - 2 )
+if %strlength%==1 (
+set "minute=0%minute%"
+)
 
 ECHO %second%> tempfile.txt
 FOR %%? IN (tempfile.txt) DO ( SET /A strlength=%%~z? - 2 )
