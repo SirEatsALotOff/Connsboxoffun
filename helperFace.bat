@@ -3,6 +3,8 @@ mode con: cols=58 lines=20
 set timeDisplay=0
 set dateDisplay=0
 set infoDisplay=0
+set tom=0
+
 setlocal enabledelayedexpansion
 title Face
 :main
@@ -12,6 +14,8 @@ if %timeDisplay%==1 title %time%
 if %dateDisplay%==1 title %date%
 if %infoDisplay%==1 title %time% %date% %username%
 
+set /a tom=%tom%+1
+if "%tom%"=="10000" goto idle
 
 set "oldUserInput=%userInput%"
 set /p userInput=<userInput.txt
@@ -22,7 +26,7 @@ title Output '%userInput%' Recieved
 ::if statement block
 ::for functions
 if "%userInput%"=="freakOut" goto freakout
-
+if "%userInput%"=="exit" exit
 if "%userInput%"=="timeTitle" (
 	set timeDisplay=1
 	set dateDisplay=0
@@ -52,21 +56,16 @@ cls
 goto :main
 :freakout
 cls
-mode con: cols=50 lines=1
-mode con: cols=60 lines=20
-mode con: cols=70 lines=20
-mode con: cols=80 lines=20
-mode con: cols=90 lines=20
-mode con: cols=100 lines=20
-mode con: cols=110 lines=20
-mode con: cols=120 lines=20
-mode con: cols=110 lines=20
-mode con: cols=100 lines=20
-mode con: cols=90 lines=20
-mode con: cols=80 lines=20
-mode con: cols=70 lines=20
-mode con: cols=60 lines=20
-mode con: cols=50 lines=20
+set counter2=0
+:numericalI
+set line=%random%%random%%random%%random%
+set "randomm=!line:~0,2!"
+set cols=%randomm%
+mode con: cols=%cols% lines=20
+if %counter2%==10 goto main
+set /a counter2=%counter2%+1
+goto numericalI
+
 PING 1.1.1.1 -n 1 -w 3 >NUL
 color a1
 echo FREAKOUT
@@ -87,10 +86,13 @@ goto loop
 PING 1.1.1.1 -n 1 -w 3 >NUL
 cls
 type face1.txt
-PING 1.1.1.1 -n 1 -w 1000 >NUL
-type face2.txt
-PING 1.1.1.1 -n 1 -w 1000 >NUL
+PING 1.1.1.1 -n 1 -w 1 >NUL
 type face3.txt
-PING 1.1.1.1 -n 1 -w 3000 >NUL
+type face2.txt
+PING 1.1.1.1 -n 1 -w 2 >NUL
+type face3.txt
+PING 1.1.1.1 -n 1 -w 3 >NUL
+echo.
 cls
+set tom=0
 goto main

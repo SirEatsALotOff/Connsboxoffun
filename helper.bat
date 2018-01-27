@@ -37,6 +37,9 @@ pause
 :menu
 cls
 set /p "userInput= "
+
 echo %userInput%>userInput.txt
 title The Input '%userInput%' Has Sent
+if "%userInput%"=="exit" exit
+if "%userInput%"=="startFace" start helperFace.bat
 goto menu
